@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -19,6 +20,16 @@ export default {
 		},
 		extend: {
 			colors: {
+				// Основная палитра
+				eco: {
+					background: '#F0F4F8',  // основной фон
+					accent: '#4CAF50',      // акцент (кнопки)
+					'accent-dark': '#388E3C', // иконки (темно-зеленый)
+					widget: '#FFFFFF',      // фон секций/виджетов
+					text: '#212121',        // основной текст
+					'text-secondary': '#757575', // второстепенный текст
+					error: '#F44336',       // ошибки
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',

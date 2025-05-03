@@ -1,295 +1,269 @@
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
-import EcoOfficeHero from "@/components/EcoOfficeHero";
-import ServiceCard from "@/components/ServiceCard";
-import BenefitCard from "@/components/BenefitCard";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const Index = () => {
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert("Сообщение отправлено! Мы скоро свяжемся с вами.");
-    setEmail("");
-    setMessage("");
+const DashboardPage = () => {
+  // Примерные данные для отображения
+  const energyStats = {
+    current: 126.4,
+    previous: 142.8,
+    change: -11.5,
+    units: "кВт·ч",
   };
 
+  const offices = [
+    { id: 1, name: "Главный офис", status: "Оптимально", energyUsage: 126.4, change: -11.5 },
+    { id: 2, name: "Отдел разработки", status: "Повышенное", energyUsage: 98.2, change: 5.2 },
+    { id: 3, name: "Переговорная", status: "Оптимально", energyUsage: 42.6, change: -3.8 },
+  ];
+
+  const recentEvents = [
+    { id: 1, time: "10:24", message: "Повышенное энергопотребление в Отделе разработки", type: "warning" },
+    { id: 2, time: "09:15", message: "Система кондиционирования переключена в эко-режим", type: "success" },
+    { id: 3, time: "08:32", message: "Отчет за апрель 2025 сформирован", type: "info" },
+    { id: 4, time: "Вчера", message: "Обновлены настройки лимитов потребления", type: "info" },
+  ];
+
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50">
+    <div className="flex flex-col min-h-screen bg-eco-background">
       {/* Навигация */}
-      <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
+      <header className="sticky top-0 z-50 w-full border-b bg-eco-widget shadow-sm">
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-2">
-            <Icon name="Leaf" className="text-green-600" size={24} />
-            <span className="text-xl font-bold text-green-800">ЭкоОфис</span>
+            <Icon name="Leaf" className="text-eco-accent-dark" size={24} />
+            <span className="text-xl font-bold text-eco-text">Эко Офис</span>
           </div>
           <nav className="hidden md:flex items-center gap-6">
-            <a href="#services" className="text-sm font-medium hover:text-green-600 transition-colors">Услуги</a>
-            <a href="#benefits" className="text-sm font-medium hover:text-green-600 transition-colors">Преимущества</a>
-            <a href="#gallery" className="text-sm font-medium hover:text-green-600 transition-colors">Галерея</a>
-            <a href="#contact" className="text-sm font-medium hover:text-green-600 transition-colors">Контакты</a>
+            <a href="#" className="text-sm font-medium text-eco-accent flex items-center gap-1">
+              <Icon name="Home" size={18} />
+              <span>Главная</span>
+            </a>
+            <a href="#" className="text-sm font-medium text-eco-text-secondary hover:text-eco-accent transition-colors flex items-center gap-1">
+              <Icon name="User" size={18} />
+              <span>Мой профиль</span>
+            </a>
+            <a href="#" className="text-sm font-medium text-eco-text-secondary hover:text-eco-accent transition-colors flex items-center gap-1">
+              <Icon name="LineChart" size={18} />
+              <span>Мониторинг</span>
+            </a>
+            <a href="#" className="text-sm font-medium text-eco-text-secondary hover:text-eco-accent transition-colors flex items-center gap-1">
+              <Icon name="Settings2" size={18} />
+              <span>Управление</span>
+            </a>
+            <a href="#" className="text-sm font-medium text-eco-text-secondary hover:text-eco-accent transition-colors flex items-center gap-1">
+              <Icon name="FileText" size={18} />
+              <span>Отчеты</span>
+            </a>
           </nav>
-          <Button className="bg-green-600 hover:bg-green-700">Заказать консультацию</Button>
+          <div className="flex items-center gap-2">
+            <Button variant="outline" className="text-eco-text-secondary">
+              <Icon name="Settings" size={18} />
+            </Button>
+            <Button variant="outline" className="text-eco-text-secondary">
+              <Icon name="LogOut" size={18} />
+            </Button>
+          </div>
         </div>
       </header>
 
-      <main className="flex-1">
-        {/* Главный баннер */}
-        <EcoOfficeHero />
-
-        {/* Секция услуг */}
-        <section id="services" className="py-16 bg-white">
-          <div className="container">
-            <h2 className="text-3xl font-bold text-center mb-12">Наши услуги</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <ServiceCard 
-                title="Эко аудит офиса" 
-                description="Комплексная оценка вашего офиса и рекомендации по внедрению экологичных решений"
-                icon="ClipboardCheck"
-              />
-              <ServiceCard 
-                title="Подбор эко мебели" 
-                description="Эргономичная и экологичная мебель из сертифицированных материалов"
-                icon="Armchair"
-              />
-              <ServiceCard 
-                title="Системы энергосбережения" 
-                description="Внедрение энергоэффективных технологий и умных систем управления ресурсами"
-                icon="Lightbulb"
-              />
-              <ServiceCard 
-                title="Озеленение офиса" 
-                description="Живые растения и фитостены для улучшения микроклимата и самочувствия сотрудников"
-                icon="Flower"
-              />
-              <ServiceCard 
-                title="Системы переработки" 
-                description="Организация раздельного сбора и утилизации отходов в офисе"
-                icon="Recycle"
-              />
-              <ServiceCard 
-                title="Экологичное клининг" 
-                description="Чистка помещений безопасными для здоровья и окружающей среды средствами"
-                icon="Sparkles"
-              />
+      <main className="flex-1 py-8">
+        <div className="container">
+          <h1 className="text-2xl font-bold mb-6">Обзор состояния офисов</h1>
+          
+          {/* Карточки с основными показателями */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg font-medium flex items-center gap-2">
+                  <Icon name="Zap" className="text-eco-accent-dark" size={20} />
+                  Потребление энергии
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex justify-between items-end">
+                  <div>
+                    <p className="text-3xl font-bold">{energyStats.current} {energyStats.units}</p>
+                    <p className="text-sm text-eco-text-secondary">Сегодня</p>
+                  </div>
+                  <div className={`flex items-center ${energyStats.change < 0 ? 'text-eco-accent' : 'text-eco-error'}`}>
+                    <Icon name={energyStats.change < 0 ? 'TrendingDown' : 'TrendingUp'} size={18} />
+                    <span className="text-sm font-medium">{Math.abs(energyStats.change)}%</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg font-medium flex items-center gap-2">
+                  <Icon name="Home" className="text-eco-accent-dark" size={20} />
+                  Активные офисы
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex justify-between items-end">
+                  <div>
+                    <p className="text-3xl font-bold">3/4</p>
+                    <p className="text-sm text-eco-text-secondary">Сейчас работают</p>
+                  </div>
+                  <Button size="sm" className="bg-eco-accent text-white">
+                    Подробнее
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-lg font-medium flex items-center gap-2">
+                  <Icon name="Co2" className="text-eco-accent-dark" size={20} />
+                  Углеродный след
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex justify-between items-end">
+                  <div>
+                    <p className="text-3xl font-bold">-35.6%</p>
+                    <p className="text-sm text-eco-text-secondary">По сравнению с прошлым месяцем</p>
+                  </div>
+                  <div className="text-eco-accent flex items-center">
+                    <Icon name="ThumbsUp" size={18} />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+          
+          {/* Основной контент: Последние события и статистика офисов */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg font-medium">Статистика энергопотребления</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Tabs defaultValue="day">
+                    <TabsList className="mb-4">
+                      <TabsTrigger value="day">День</TabsTrigger>
+                      <TabsTrigger value="week">Неделя</TabsTrigger>
+                      <TabsTrigger value="month">Месяц</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="day" className="space-y-4">
+                      {offices.map(office => (
+                        <div key={office.id} className="flex items-center justify-between p-3 bg-eco-background rounded-md">
+                          <div>
+                            <h3 className="font-medium">{office.name}</h3>
+                            <p className="text-sm text-eco-text-secondary">{office.status}</p>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <div>
+                              <p className="font-medium text-right">{office.energyUsage} кВт·ч</p>
+                              <p className={`text-sm flex items-center justify-end ${office.change < 0 ? 'text-eco-accent' : 'text-eco-error'}`}>
+                                <Icon name={office.change < 0 ? 'TrendingDown' : 'TrendingUp'} size={14} />
+                                <span>{Math.abs(office.change)}%</span>
+                              </p>
+                            </div>
+                            <Button variant="outline" size="sm" className="p-0 w-8 h-8">
+                              <Icon name="MoreVertical" size={16} />
+                            </Button>
+                          </div>
+                        </div>
+                      ))}
+                    </TabsContent>
+                    <TabsContent value="week">
+                      <div className="py-8 text-center text-eco-text-secondary">
+                        Данные за неделю загружаются...
+                      </div>
+                    </TabsContent>
+                    <TabsContent value="month">
+                      <div className="py-8 text-center text-eco-text-secondary">
+                        Данные за месяц загружаются...
+                      </div>
+                    </TabsContent>
+                  </Tabs>
+                </CardContent>
+              </Card>
             </div>
-          </div>
-        </section>
-
-        {/* Секция преимуществ */}
-        <section id="benefits" className="py-16 bg-green-50">
-          <div className="container">
-            <h2 className="text-3xl font-bold text-center mb-12">Преимущества эко офиса</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <BenefitCard 
-                title="Забота о здоровье сотрудников" 
-                description="Чистый воздух, естественное освещение и экологичные материалы снижают риск заболеваний"
-                icon="Heart"
-              />
-              <BenefitCard 
-                title="Экономия ресурсов" 
-                description="Снижение расходов на электроэнергию, воду и расходные материалы до 40%"
-                icon="PiggyBank"
-              />
-              <BenefitCard 
-                title="Повышение продуктивности" 
-                description="Комфортная рабочая среда повышает эффективность работы сотрудников"
-                icon="LineChart"
-              />
-              <BenefitCard 
-                title="Улучшение имиджа компании" 
-                description="Забота об экологии привлекает клиентов и повышает репутацию бренда"
-                icon="Award"
-              />
-              <BenefitCard 
-                title="Снижение экологического следа" 
-                description="Уменьшение негативного воздействия на окружающую среду"
-                icon="Footprints"
-              />
-              <BenefitCard 
-                title="Соответствие ESG стандартам" 
-                description="Выполнение требований по устойчивому развитию и социальной ответственности"
-                icon="CheckCircle"
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* Галерея проектов */}
-        <section id="gallery" className="py-16 bg-white">
-          <div className="container">
-            <h2 className="text-3xl font-bold text-center mb-12">Наши проекты</h2>
-            <Tabs defaultValue="office" className="w-full">
-              <TabsList className="grid w-full md:w-auto md:inline-grid grid-cols-3 mb-8">
-                <TabsTrigger value="office">Офисы</TabsTrigger>
-                <TabsTrigger value="coworking">Коворкинги</TabsTrigger>
-                <TabsTrigger value="meeting">Переговорные</TabsTrigger>
-              </TabsList>
-              <TabsContent value="office" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <Card className="overflow-hidden hover:shadow-lg transition-all">
-                  <CardContent className="p-0">
-                    <img 
-                      src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=350&q=80" 
-                      alt="Эко офис с растениями" 
-                      className="w-full h-64 object-cover"
-                    />
-                    <div className="p-4">
-                      <h3 className="font-medium">Офис IT-компании «ГринТек»</h3>
-                      <p className="text-sm text-gray-600">Москва, 450 м²</p>
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className="overflow-hidden hover:shadow-lg transition-all">
-                  <CardContent className="p-0">
-                    <img 
-                      src="https://images.unsplash.com/photo-1604328698692-f76ea9498e76?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=350&q=80" 
-                      alt="Современный эко офис" 
-                      className="w-full h-64 object-cover"
-                    />
-                    <div className="p-4">
-                      <h3 className="font-medium">Головной офис «ЭкоФинанс»</h3>
-                      <p className="text-sm text-gray-600">Санкт-Петербург, 780 м²</p>
-                    </div>
-                  </CardContent>
-                </Card>
-                <Card className="overflow-hidden hover:shadow-lg transition-all">
-                  <CardContent className="p-0">
-                    <img 
-                      src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=350&q=80" 
-                      alt="Офис с панорамными окнами" 
-                      className="w-full h-64 object-cover"
-                    />
-                    <div className="p-4">
-                      <h3 className="font-medium">Креативный офис «АртЭко»</h3>
-                      <p className="text-sm text-gray-600">Казань, 320 м²</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-              <TabsContent value="coworking" className="text-center py-12">
-                <p className="text-gray-500">Проекты коворкингов будут добавлены в ближайшее время</p>
-              </TabsContent>
-              <TabsContent value="meeting" className="text-center py-12">
-                <p className="text-gray-500">Проекты переговорных комнат будут добавлены в ближайшее время</p>
-              </TabsContent>
-            </Tabs>
-          </div>
-        </section>
-
-        {/* Контактная форма */}
-        <section id="contact" className="py-16 bg-green-50">
-          <div className="container">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-8">Свяжитесь с нами</h2>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-xl font-semibold mb-4">Контактная информация</h3>
+            
+            <div>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg font-medium">Последние события</CardTitle>
+                </CardHeader>
+                <CardContent>
                   <div className="space-y-4">
-                    <div className="flex items-center gap-2">
-                      <Icon name="MapPin" className="text-green-600" size={20} />
-                      <span>Москва, ул. Зеленая, 42</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Icon name="Phone" className="text-green-600" size={20} />
-                      <span>+7 (800) 123-45-67</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Icon name="Mail" className="text-green-600" size={20} />
-                      <span>info@eco-office.ru</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Icon name="Clock" className="text-green-600" size={20} />
-                      <span>Пн-Пт: 9:00-18:00</span>
-                    </div>
+                    {recentEvents.map(event => (
+                      <div key={event.id} className="flex gap-3">
+                        <div className={`mt-0.5 p-1.5 rounded-full 
+                          ${event.type === 'warning' ? 'bg-yellow-100 text-yellow-600' : 
+                            event.type === 'success' ? 'bg-green-100 text-green-600' : 
+                            'bg-blue-100 text-blue-600'}`}
+                        >
+                          <Icon 
+                            name={
+                              event.type === 'warning' ? 'AlertTriangle' : 
+                              event.type === 'success' ? 'CheckCircle' : 
+                              'Info'
+                            } 
+                            size={14} 
+                          />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <p className="text-sm font-medium">{event.message}</p>
+                          </div>
+                          <p className="text-xs text-eco-text-secondary">{event.time}</p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <div className="flex gap-4 mt-6">
-                    <a href="#" className="rounded-full bg-white p-2 shadow-sm hover:shadow-md transition-all">
-                      <Icon name="Instagram" size={20} />
-                    </a>
-                    <a href="#" className="rounded-full bg-white p-2 shadow-sm hover:shadow-md transition-all">
-                      <Icon name="Facebook" size={20} />
-                    </a>
-                    <a href="#" className="rounded-full bg-white p-2 shadow-sm hover:shadow-md transition-all">
-                      <Icon name="Telegram" size={20} />
-                    </a>
-                  </div>
-                </div>
-                <div>
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                      <Input 
-                        placeholder="Ваш email" 
-                        type="email" 
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required 
-                      />
-                    </div>
-                    <div>
-                      <Textarea 
-                        placeholder="Ваше сообщение" 
-                        className="min-h-[120px]" 
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        required
-                      />
-                    </div>
-                    <Button type="submit" className="w-full bg-green-600 hover:bg-green-700">
-                      Отправить сообщение
+                  
+                  <Button variant="outline" className="w-full mt-4">
+                    Показать все события
+                  </Button>
+                </CardContent>
+              </Card>
+              
+              <Card className="mt-6">
+                <CardHeader>
+                  <CardTitle className="text-lg font-medium">Быстрые действия</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Button variant="outline" className="justify-start">
+                      <Icon name="FileText" className="mr-2 text-eco-accent-dark" size={18} />
+                      Отчеты
                     </Button>
-                  </form>
-                </div>
-              </div>
+                    <Button variant="outline" className="justify-start">
+                      <Icon name="Settings2" className="mr-2 text-eco-accent-dark" size={18} />
+                      Управление
+                    </Button>
+                    <Button variant="outline" className="justify-start">
+                      <Icon name="Users" className="mr-2 text-eco-accent-dark" size={18} />
+                      Пользователи
+                    </Button>
+                    <Button variant="outline" className="justify-start">
+                      <Icon name="Bell" className="mr-2 text-eco-accent-dark" size={18} />
+                      Уведомления
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
-        </section>
+        </div>
       </main>
 
-      {/* Футер */}
-      <footer className="bg-green-800 text-white py-8">
+      <footer className="py-4 text-center text-sm text-eco-text-secondary border-t bg-eco-widget">
         <div className="container">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <Icon name="Leaf" size={24} />
-                <span className="text-xl font-bold">ЭкоОфис</span>
-              </div>
-              <p className="text-green-200">Создаем экологичные офисные пространства для здоровья сотрудников и планеты</p>
-            </div>
-            <div>
-              <h3 className="text-lg font-medium mb-4">Быстрые ссылки</h3>
-              <ul className="space-y-2">
-                <li><a href="#services" className="text-green-200 hover:text-white transition-colors">Услуги</a></li>
-                <li><a href="#benefits" className="text-green-200 hover:text-white transition-colors">Преимущества</a></li>
-                <li><a href="#gallery" className="text-green-200 hover:text-white transition-colors">Галерея</a></li>
-                <li><a href="#contact" className="text-green-200 hover:text-white transition-colors">Контакты</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-medium mb-4">Подписка на новости</h3>
-              <div className="flex gap-2">
-                <Input placeholder="Ваш email" className="bg-green-700 border-green-700 text-white placeholder:text-green-300" />
-                <Button variant="outline" className="border-white text-white hover:bg-white hover:text-green-800">
-                  <Icon name="Send" size={18} />
-                </Button>
-              </div>
-              <p className="text-xs text-green-300 mt-2">Подпишитесь на рассылку и получите скидку 10% на первый заказ</p>
-            </div>
-          </div>
-          <div className="border-t border-green-700 mt-8 pt-6 text-center text-green-300 text-sm">
-            © 2025 ЭкоОфис. Все права защищены.
-          </div>
+          &copy; 2025 ЭкоОфис. Все права защищены.
         </div>
       </footer>
     </div>
   );
 };
 
-export default Index;
+export default DashboardPage;
