@@ -1,0 +1,126 @@
+
+/** @type {import('tailwindcss').Config} */
+export>Здоровый микроклимат</span>
+             default {
+  darkMode: ["</div>
+          </div>
+        class"],
+  content: [</div>
+        <div className
+    './index.html',="relative">
+          <img
+    './src/**/*.{js,ts,jsx,tsx}',
+  ],
+   
+            src="https://images.unstheme: {
+    container: {
+      centerplash.com/photo-1497: true,
+      padding: "2rem",
+      screens: {
+        215842964-222b"2xl": "1400px",
+      },
+    },
+    extend: {430dc094?ixlib=
+      colors: {
+        green: {rb-4.0.3
+          50: "#F&auto=format&fit=crop&w=600&h=450&q=80" 
+            2FCE2",
+          100: "#DCFCD1alt="Экологичный офис с",
+          200: "#BB растениями и натуральнымиF7B2",
+          300: материалами" 
+            className="rounded-lg shadow-lg w "#86EB85",
+          400:-full h-auto object "#4CD364",
+          500:-cover"
+          />
+          <div className="absolute -bottom-5 "#22C55E",
+          600 -left-5 bg-: "#16A34A",white p-4 rounded-lg
+          700: "#15803D",
+          800 shadow-md flex items-center gap-: "#166534",
+          900: "#3">
+            <div14532D",
+         className="bg-green-100 rounde},
+        border: "hd-full p-2">
+              <svgsl(var(--border))",
+         xmlns="http://www.w3.orginput: "hsl(var(--input/2000/svg" className="h-))",
+        ring: "hsl(var(--ring))",
+        backgroun6 w-6 text-green-600" viewBox="0 0d: "hsl(var(--background))",
+        foreground: "hsl( 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokevar(--foreground))",
+        primary: {
+          DEFAULT: "hsl(Linecap="round" strokeLinejoin="round">
+                <path d="Mvar(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary12 22c6.23: {
+          DEFAULT: "hsl(var(--secondary))",
+          foregroun-.05 8.24d: "hsl(var(--secondary-foreground))",-4.5 8.24-
+        },
+        destructive: {
+          10.24C20.24 6DEFAULT: "hsl(var(--destruct.18 16.12 2 12 2S3.ive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted:76 6.18 3.76  {
+          DEFAULT: "hsl(var(--muted))",
+          foregroun11.76C3.d: "hsl(var(--mute76 17.5 5d-foreground))",
+        },
+        .77 21.95accent: {
+          DEFAULT: "hsl 12 22z" />
+                (var(--accent))",
+          fore<path d="M12 2ground: "hsl(var(--accentv20" />
+                -foreground))",
+        },
+        <path d="M12 13popover: {
+          DEFAULT: "hsl(var(--popover))",
+           7.24 8.24foreground: "hsl(var(--" />
+                <pathpopover-foreground))",
+        }, d="M12 13l
+        card: {
+          DEFAULT: "hsl(var(--card))",4.76-4.76" />
+          foreground: "hsl(var(
+              </svg>
+            --card-foreground))",
+        },</div>
+            <div>
+              
+      },
+      borderRadius: {
+        <div className="font-mediumlg: "var(--radius)",">Снижение эк
+        md: "calc(var(--radiusоследа</div>) - 2px)",
+        sm:
+              <div className="text-sm "calc(var(--radius) -  text-gray-500">до4px)",
+      },
+      keyframes: {
+        "accordion-down": 40% экономии {
+          from: { height: "0 ресурсов" },
+          to: { height: "</div>
+            </div>
+          var(--radix-accordion-content-</div>
+        </div>
+      </div>
+    </section>
+  );height)" },
+        },
+        "accordion
+};
+
+export default EcoOfficeH-up": {
+          from: { height: "var(--radix-accordion-ero;
+</pp-writecontent-height)" },
+          to: {>
+
+<pp-write filepath="src/ height: "0" },
+        },components/ServiceCard.tsx">
+import Icon
+      },
+      animation: {
+        " from "@/components/uiaccordion-down": "accordion-down 0/icon";
+import { Car.2s ease-out",
+        "accordion-up": "accordion-up 0d, CardContent } from "@/components/.2s ease-out",
+      },ui/card";
+
+interface
+    },
+  },
+  plugins: ServiceCardProps {
+  title: string;
+  description: string; [require("tailwindcss-animate")],
+}

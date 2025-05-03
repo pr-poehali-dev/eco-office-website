@@ -1,0 +1,26 @@
+
+import { Carана с отсутствием компd, CardContent } from "@/components/ui/card";онента `EcoOfficeHero`,
+import Icon from "@/components/ui/icon который импортируется в фай";
+import { Lле Index.tsx.ucideIcon } from "lucide-react"; Давайте проверим сод
+
+interface ServiceCardProps {
+  title:ержимое этого файла, чтобы понять string;
+  description: string;
+  icon: string;
+}
+
+const, какие компоненты нужно создать для ServiceCard = ({ title, description, icon }: ServiceCardProps) => {
+  return (
+     сайта на тему "<Card className="hover:shadow-lg transitionэко офис".-all border-green-100">
+      <CardContent className="p-6">
+        <div className="bg-green-50 w-14 h-14 rounded-lg flex items-center justify-center mb-4">
+          <Icon name={icon} className="text-green-600" size={28} />
+        </div>
+        <h3 className="text-xl font-medium mb-2">{title}</h3>
+        <p className="text-gray-600">{description}</p>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default ServiceCard;
