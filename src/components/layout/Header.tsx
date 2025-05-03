@@ -2,10 +2,14 @@
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
 import { NavLink } from "../navigation/NavLink";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   const navLinks = [
-    { path: "/", icon: "Home", label: "Главная", isActive: true },
+    { path: "/", icon: "Home", label: "Главная" },
     { path: "/profile", icon: "User", label: "Мой профиль" },
     { path: "/monitoring", icon: "LineChart", label: "Мониторинг" },
     { path: "/devices", icon: "Settings2", label: "Управление" },
@@ -25,7 +29,7 @@ const Header = () => {
               key={link.path}
               href={link.path}
               icon={link.icon}
-              isActive={link.isActive}
+              isActive={currentPath === link.path}
             >
               {link.label}
             </NavLink>

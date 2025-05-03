@@ -9,8 +9,11 @@ import { OfficeStatList } from "@/components/dashboard/OfficeStatList";
 import { EventList } from "@/components/events/EventList";
 import { QuickActions } from "@/components/dashboard/QuickActions";
 import { Office, Event, EnergyStats } from "@/types/eco-office";
+import { useNavigate } from "react-router-dom";
 
 const DashboardPage = () => {
+  const navigate = useNavigate();
+  
   // Примерные данные для отображения
   const energyStats: EnergyStats = {
     current: 126.4,
@@ -19,10 +22,23 @@ const DashboardPage = () => {
     units: "кВт·ч",
   };
 
-  const offices: Office[] = [
+  // Данные для разных периодов (день, неделя, месяц)
+  const dailyOffices: Office[] = [
     { id: 1, name: "Главный офис", status: "Оптимально", energyUsage: 126.4, change: -11.5 },
     { id: 2, name: "Отдел разработки", status: "Повышенное", energyUsage: 98.2, change: 5.2 },
     { id: 3, name: "Переговорная", status: "Оптимально", energyUsage: 42.6, change: -3.8 },
+  ];
+
+  const weeklyOffices: Office[] = [
+    { id: 1, name: "Главный офис", status: "Оптимально", energyUsage: 782.5, change: -8.3 },
+    { id: 2, name: "Отдел разработки", status: "Оптимально", energyUsage: 654.3, change: -2.1 },
+    { id: 3, name: "Переговорная", status: "Повышенное", energyUsage: 312.8, change: 7.4 },
+  ];
+
+  const monthlyOffices: Office[] = [
+    { id: 1, name: "Главный офис", status: "Оптимально", energyUsage: 3240.6, change: -12.5 },
+    { id: 2, name: "Отдел разработки", status: "Оптимально", energyUsage: 2875.2, change: -6.8 },
+    { id: 3, name: "Переговорная", status: "Оптимально", energyUsage: 1428.9, change: -4.3 },
   ];
 
   const recentEvents: Event[] = [
@@ -33,8 +49,8 @@ const DashboardPage = () => {
   ];
 
   const quickActions = [
-    { icon: "FileText", label: "Отчеты", onClick: () => console.log("Переход к отчетам") },
-    { icon: "Settings2", label: "Управление", onClick: () => console.log("Переход к управлению") },
+    { icon: "FileText", label: "Отчеты", onClick: () => navigate("/reports") },
+    { icon: "Settings2", label: "Управление", onClick: () => navigate("/devices") },
     { icon: "Users", label: "Пользователи", onClick: () => console.log("Переход к пользователям") },
     { icon: "Bell", label: "Уведомления", onClick: () => console.log("Переход к уведомлениям") },
   ];
@@ -49,8 +65,8 @@ const DashboardPage = () => {
   }, []);
 
   const handleOfficeDetailsClick = useCallback(() => {
-    console.log("Подробнее о офисах");
-  }, []);
+    navigate("/monitoring");
+  }, [navigate]);
   
   return (
     <div className="flex flex-col min-h-screen bg-eco-background">
@@ -105,19 +121,21 @@ const DashboardPage = () => {
                     </TabsList>
                     <TabsContent value="day">
                       <OfficeStatList 
-                        offices={offices} 
+                        offices={dailyOffices} 
                         onOfficeAction={handleOfficeAction}
                       />
                     </TabsContent>
                     <TabsContent value="week">
-                      <div className="py-8 text-center text-eco-text-secondary">
-                        Данные за неделю загружаются...
-                      </div>
+                      <OfficeStatList 
+                        offices={weeklyOffices} 
+                        onOfficeAction={handleOfficeAction}
+                      />
                     </TabsContent>
                     <TabsContent value="month">
-                      <div className="py-8 text-center text-eco-text-secondary">
-                        Данные за месяц загружаются...
-                      </div>
+                      <OfficeStatList 
+                        offices={monthlyOffices} 
+                        onOfficeAction={handleOfficeAction}
+                      />
                     </TabsContent>
                   </Tabs>
                 </CardContent>

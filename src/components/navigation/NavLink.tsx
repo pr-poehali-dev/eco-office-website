@@ -1,6 +1,6 @@
 
 import Icon from "@/components/ui/icon";
-import { LucideIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface NavLinkProps {
   href: string;
@@ -11,8 +11,8 @@ interface NavLinkProps {
 
 export const NavLink = ({ href, icon, children, isActive = false }: NavLinkProps) => {
   return (
-    <a 
-      href={href} 
+    <Link 
+      to={href} 
       className={`text-sm font-medium ${
         isActive 
           ? "text-eco-accent" 
@@ -21,6 +21,6 @@ export const NavLink = ({ href, icon, children, isActive = false }: NavLinkProps
     >
       <Icon name={icon} size={18} />
       <span>{children}</span>
-    </a>
+    </Link>
   );
 };
